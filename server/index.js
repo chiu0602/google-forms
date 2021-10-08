@@ -11,7 +11,7 @@ const router = require('./routes/router')
 
 
 //db
-mongoose.connect(process.env.MONGO_URL,{
+mongoose.connect(process.env.MONGO_URL || "mongodb://localhost:27017/gf",{
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -40,7 +40,7 @@ app.use(express.json());
 app.get('/', async(req, res)=>{
     try{
         var result = await ImageModel.find().lean();
-        res.send(result);     
+        res.send(result);
     }catch(e){
         res.send(e);
     }
@@ -50,7 +50,7 @@ app.get('/', async(req, res)=>{
 app.post('/', upload.single('myfile'), async(req, res) => {
     const file = req.file; // file passed from client
     const meta = req.body; // all other values passed from the client, like name, etc..
-    
+
     var data = {
         image: req.file.filename
     }

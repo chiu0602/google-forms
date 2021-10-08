@@ -3,15 +3,7 @@
 <h4 align="center">A Clone of google forms in React and Nodejs.</h4>
 
 <p align="center">
-    <a href="https://github.com/rohitsaini1196/google-forms/commits/master">
-    <img src="https://img.shields.io/badge/Last%20Commit-July-green?style=flat-square&logo=github&logoColor=white"
-         alt="GitHub last commit">
-    <a href="https://github.com/rohitsaini1196/google-forms/issues">
-    <img src="https://img.shields.io/badge/Open%20Issues-0-red?style=flat-square&logo=github&logoColor=white"
-         alt="GitHub issues">
-    <a href="https://github.com/rohitsaini1196/google-forms/pulls">
-    <img src="https://img.shields.io/badge/Open%20pull%20requests-0-blue?style=flat-square&logo=github&logoColor=whit"
-         alt="GitHub pull requests">
+    The work is modified on great work by <a href="https://github.com/rohitsaini1196/google-forms">rohitsaini1196</a> with minor change made to enable anonymous user accessing the forms.
 </p>
       
 <p align="center">
@@ -53,7 +45,7 @@ $ npm run dev
  **Boom** it will automatically start the local server for backend and frontend. 
  > *Default Frontend port is 3000 and backend port is 5000*
 
-
+MongoDB would be used, default connects to `mongodb://localhost:27017/gf`, to change, set an environment variable `MONGO_URL`.
 
 
 

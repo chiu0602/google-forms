@@ -9,13 +9,13 @@ module.exports = {
     formsGet : async(req,res)=>{
         try{
             var result = await FormModel.find().lean();
-            res.send(result);     
+            res.send(result);
         }catch(e){
             res.send(e);
         }
     },
 
-    createForm: async(req,res)=>{     
+    createForm: async(req,res)=>{
         try {
              var data = {
                 createdBy : req.body.createdBy,
@@ -30,7 +30,7 @@ module.exports = {
                     { $push: { createdForms: docs._id}})
                     .then(()=>{
                     console.log("Form id added to user deeatils");
-                }).catch(error => console.log("got some error"))  
+                }).catch(error => console.log("got some error"))
                 res.status(200).json(
                     docs
                 );
@@ -46,10 +46,10 @@ module.exports = {
             var formId = req.params.formId;
 
             await FormModel.findOne({_id: formId}).then(async(form)=>{
-                 
+
                  if(form == null){
                      res.status(404).send('Form not found');
-                 } else{ 
+                 } else{
                      res.status(200).json(form)
                  }
              })
@@ -58,7 +58,7 @@ module.exports = {
             res.send(error)
         }
     },
-    
+
     deleteForm: async(req, res)=>{
 
         try {
@@ -68,25 +68,25 @@ module.exports = {
             console.log(formId);
             console.log(userId);
 
-            await FormModel.findOne({_id: formId}).then(async(form)=>{ 
+            await FormModel.findOne({_id: formId}).then(async(form)=>{
                  console.log(form);
                 if(form== null){
                     res.status(404).send('Form not found or already deleted');
-                } else { 
+                } else {
                     if(form.createdBy == userId){
                         form.remove(function(err) {
                             if(err) { return res.status(500).send(err) }
-                            console.log('Form deleted');                 
+                            console.log('Form deleted');
                             return res.status(202).send("Form Deleted")
-                          });                       
-                    } 
+                          });
+                    }
                     else{
                         res.status(401).send("You are not the owner of this Form");
                     }
                 }
             });
         } catch (error) {
-            
+
         }
     },
 
@@ -100,10 +100,10 @@ module.exports = {
             }
 
             console.log("Hi, I am from backend, this is form data that i recivied");
-            
+
 
             console.log(data);
-            
+
 
             FormModel.findByIdAndUpdate(formId, data ,{new: true} ,(err, result)=>{
                 if(err){
@@ -113,7 +113,7 @@ module.exports = {
                     res.status(200).json(result)
                 }
             });
-           
+
         } catch (error) {
             res.send(error)
         }
@@ -121,25 +121,28 @@ module.exports = {
 
     getAllFormsOfUser: async(req, res)=>{
         try {
+            /*
             var userId = req.params.userId;
             console.log(userId);
             await UserModel.findOne({_id:userId}).then(async(user)=>{
                 if(user == null){
                     res.status(404).send('User not found');
-                } else{ 
-                   await FormModel.find().where('_id').in(user.createdForms).exec((err, records) => {
-                       console.log(records);
-       
-                       res.status(200).json(records);
-                   });
+                } else{
+                    await FormModel.find().where('_id').in(user.createdForms).exec((err, records) => {
+            */
+                    await FormModel.find().exec((err, records) => {
+                        console.log(records);
+
+                        res.status(200).json(records);
+                    });
+            /*
                 }
 
              //   res.send(docs.createdForms)
             });
-
-            
+            */
         } catch (error) {
-            res.send(error)
+            res.status(500).send(error)
         }
     },
 
@@ -152,21 +155,21 @@ module.exports = {
             }
             console.log(data.formId);
             console.log(data.userId);
-            
-            
+
+
             if (data.response.length > 0) {
                 var newResponse = new ResponseModel(data)
                // console.log(newResponse);
-                
-                await newResponse.save().then((docs)=>{              
+
+                await newResponse.save().then((docs)=>{
                     res.status(200).json(
                         docs
                     );
                 })
-            } 
+            }
             else{
-                res.status(400).send("FIll atleast one field, MF!"); 
-            } 
+                res.status(400).send("FIll atleast one field, MF!");
+            }
         } catch (error) {
             res.send(error)
         }
@@ -175,7 +178,7 @@ module.exports = {
     allResponses : async(req,res)=>{
         try{
             var result = await ResponseModel.find().lean();
-            res.json(result);     
+            res.json(result);
         }catch(e){
             res.send(e);
         }
@@ -185,8 +188,8 @@ module.exports = {
         try {
             var formId = req.params.formId;
          //   console.log(formId);
-            
-            await ResponseModel.find({formId: formId}).then(async(responses)=>{ 
+
+            await ResponseModel.find({formId: formId}).then(async(responses)=>{
                     res.status(200).json(responses)
             })
 
@@ -205,7 +208,7 @@ module.exports = {
 
 //   userId: {
 //     type: mongoose.Schema.Types.ObjectId,
-//     ref: 'User'     
+//     ref: 'User'
 //   },
 
 //   response : [{
