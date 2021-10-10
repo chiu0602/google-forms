@@ -33,13 +33,27 @@ Hey, It is a clone of _Google Forms_ , it's completely open source and have some
 ## Installation
 
 ##### Downloading and installing steps:
-* **[Download or Clone](https://github.com/rohitsaini1196/google-forms.git)** the latest version of the Code.
+
+* Download or Clone the latest version of the Code.
 
 ```console
 $ cd google-forms
 $ npm install && cd server && npm install 
 $ cd ..
-$ npm run dev
+$ npm start dev
+```
+
+Optionally, use yarn
+  
+```console
+$ npm i -g yarn
+```
+
+```console
+$ cd google-forms
+$ yarn install && cd server && yarn install 
+$ cd ..
+$ yarn dev
 ```
 
  **Boom** it will automatically start the local server for backend and frontend. 
@@ -66,30 +80,30 @@ etc.
 
 ## Screenshots
 
-![Home Page](https://github.com/rohitsaini1196/google-forms/blob/master/screenshots/homepage.png)
+![Home Page](https://github.com/chiu0602/google-forms/blob/master/screenshots/homepage.png)
 
-![User Preview](https://github.com/rohitsaini1196/google-forms/blob/master/screenshots/userview.png)
+![User Preview](https://github.com/chiu0602/google-forms/blob/master/screenshots/userview.png)
 
-![User Preview](https://github.com/rohitsaini1196/google-forms/blob/master/screenshots/createview.png)
+![User Preview](https://github.com/chiu0602/google-forms/blob/master/screenshots/createview.png)
 
-![Submit Preview](https://github.com/rohitsaini1196/google-forms/blob/master/screenshots/submitview.png)
+![Submit Preview](https://github.com/chiu0602/google-forms/blob/master/screenshots/submitview.png)
 
-![Basic question perview](https://github.com/rohitsaini1196/google-forms/blob/master/screenshots/basic-user-question.png)
+![Basic question perview](https://github.com/chiu0602/google-forms/blob/master/screenshots/basic-user-question.png)
 
-![Creater Preview](https://github.com/rohitsaini1196/google-forms/blob/master/screenshots/createView-withImage.png)
+![Creater Preview](https://github.com/chiu0602/google-forms/blob/master/screenshots/createView-withImage.png)
 
-![Share Link](https://github.com/rohitsaini1196/google-forms/blob/master/screenshots/sharelink.png)
+![Share Link](https://github.com/chiu0602/google-forms/blob/master/screenshots/sharelink.png)
 
-![Creater Preview](https://github.com/rohitsaini1196/google-forms/blob/master/screenshots/image-user-view.png)
+![Creater Preview](https://github.com/chiu0602/google-forms/blob/master/screenshots/image-user-view.png)
 
-![Response Preview](https://github.com/rohitsaini1196/google-forms/blob/master/screenshots/response.png)
-
-
+![Response Preview](https://github.com/chiu0602/google-forms/blob/master/screenshots/response.png)
 
 
 
 
-[See more](https://github.com/rohitsaini1196/google-forms/tree/master/screenshots).
+
+
+[See more](https://github.com/chiu0602/google-forms/tree/master/screenshots).
 
 
 
