@@ -1,29 +1,21 @@
 import React from 'react';
-
 import { styled } from '@mui/material/styles';
-
 import { useHistory } from "react-router-dom";
-
-
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { makeStyles } from '@mui/styles';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import Paper from '@mui/material/Paper';
 import Hidden from '@mui/material/Hidden';
 import CardActionArea from '@mui/material/CardActionArea';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-import IconButton from '@mui/material/IconButton';
 
 const PREFIX = 'LandingPage';
 
@@ -140,27 +132,23 @@ function Copyright() {
   return (
     <StyledTypography variant="body2" color="textSecondary" align="center">
       <Link color="inherit" href="https://www.stillthristy.in/">
-      Rohit Saini
+        Rohit Saini
       </Link>
       { ' © '}
       <Link color="inherit" href="https://github.com/rohitsaini1196">
         GitHub
-      </Link>{' '}
+      </Link>
+      {' '}
       {new Date().getFullYear()}
       {'.'}
     </StyledTypography>
   );
 }
 
-const cards = [];
-
 export default function LangingPage() {
-
-
-
   let history = useHistory();
 
-  function loginClick(){
+  function loginClick() {
     history.push('/login')
   }
 
@@ -175,7 +163,6 @@ export default function LangingPage() {
               Velocity Forms
             </Typography>
             <Button color="inherit" onClick={loginClick}>Login</Button>
-
           </Toolbar>
         </AppBar>
       </div>
@@ -183,123 +170,102 @@ export default function LangingPage() {
       <main style={{textAlign: 'start'}}>
         <div>
           <Container>
-            <br></br>
-            <br></br>
-            <br></br>
-          <Paper className={classes.mainFeaturedPost} >
-            {/* Increase the priority of the hero background image */}
-            {<img style={{ display: 'none' }} src="https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="gg" />}
-            <div className={classes.overlay} />
-            <Grid container>
-              <Grid item md={6}>
-                <div className={classes.mainFeaturedPostContent}>
-                  <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-                    Velocity Forms
-                  </Typography>
-                  <Typography variant="h5" color="inherit" paragraph>
-                    Plan your next camping trip, manage event registrations, whip up a quick poll, create a pop quiz, and much more.
-                  </Typography>
-                  <div className={classes.buttons}>
-                    <Button variant="contained" color="primary" className={classes.buttongg} onClick={loginClick}>
-                      Signup Now
-                    </Button>
-                    <Button variant="contained" color="primary" className={classes.buttongg} onClick={loginClick}>
-                      Login
-                    </Button>
+            <br/>
+            <br/>
+            <br/>
+            <Paper className={classes.mainFeaturedPost} >
+              {/* Increase the priority of the hero background image */}
+              {<img style={{ display: 'none' }} src="https://images.pexels.com/photos/998641/pexels-photo-998641.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="gg" />}
+              <div className={classes.overlay} />
+              <Grid container>
+                <Grid item md={6}>
+                  <div className={classes.mainFeaturedPostContent}>
+                    <Typography component="h1" variant="h3" color="inherit" gutterBottom>
+                      Velocity Forms
+                    </Typography>
+                    <Typography variant="h5" color="inherit" paragraph>
+                      Plan your next camping trip, manage event registrations, whip up a quick poll, create a pop quiz, and much more.
+                    </Typography>
+                    <div className={classes.buttons}>
+                      <Button variant="contained" color="primary" className={classes.buttongg} onClick={loginClick}>
+                        Signup Now
+                      </Button>
+                      <Button variant="contained" color="primary" className={classes.buttongg} onClick={loginClick}>
+                        Login
+                      </Button>
+                    </div>
                   </div>
-
-
-
-                </div>
+                </Grid>
               </Grid>
-            </Grid>
-          </Paper>
-           <br></br>
-           <br></br>
-           <br></br>
-
-
-           <div>
-           <Grid container spacing={4}>
-            <Grid item xs={12} md={6}>
-                <CardActionArea component="a" href="/">
-                  <Card className={classes.card}>
-                    <div className={classes.cardDetails}>
-                      <CardContent>
-                        <Typography component="h2" variant="h5">
-                        Survey with style
-                        </Typography>
-                        <Typography variant="subtitle1"  style={{color: 'teal'}}>
-                          Style
-                        </Typography>
-                        <Typography variant="subtitle1" paragraph>
-                        Use your own photo or logo, and Forms will pick just the right colors to complete your own unique form, or choose from a set of curated themes to set the tone. We can store images for future.
-                        </Typography>
-
-                      </CardContent>
-                    </div>
-                    <Hidden smDown>
-                      <CardMedia className={classes.cardMedia} image="https://images.pexels.com/photos/4823233/pexels-photo-4823233.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" title="" />
-                    </Hidden>
-                  </Card>
-                </CardActionArea>
+            </Paper>
+            <br/>
+            <br/>
+            <br/>
+            <div>
+              <Grid container spacing={4}>
+                <Grid item xs={12} md={6}>
+                  <CardActionArea component="a" href="/">
+                    <Card className={classes.card}>
+                      <div className={classes.cardDetails}>
+                        <CardContent>
+                          <Typography component="h2" variant="h5">
+                            Survey with style
+                          </Typography>
+                          <Typography variant="subtitle1"  style={{color: 'teal'}}>
+                            Style
+                          </Typography>
+                          <Typography variant="subtitle1" paragraph>
+                            Use your own photo or logo, and Forms will pick just the right colors to complete your own unique form, or choose from a set of curated themes to set the tone. We can store images for future.
+                          </Typography>
+                        </CardContent>
+                      </div>
+                      <Hidden smDown>
+                        <CardMedia className={classes.cardMedia} image="https://images.pexels.com/photos/4823233/pexels-photo-4823233.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" title="" />
+                      </Hidden>
+                    </Card>
+                  </CardActionArea>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <CardActionArea component="a" href="/">
+                    <Card className={classes.card}>
+                      <div className={classes.cardDetails}>
+                        <CardContent>
+                          <Typography component="h2" variant="h5">
+                            Organized &amp; analyzed
+                          </Typography>
+                          <Typography variant="subtitle1"  style={{color: 'teal'}}>
+                            organize
+                          </Typography>
+                          <Typography variant="subtitle1" paragraph>
+                            Responses to your surveys are neatly and automatically collected in Forms, with real time response info and charts. Or, download a csv/json or load data in google sheets.
+                          </Typography>
+                        </CardContent>
+                      </div>
+                      <Hidden smDown>
+                        <CardMedia className={classes.cardMedia} image="https://images.pexels.com/photos/4823233/pexels-photo-4823233.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" title="" />
+                      </Hidden>
+                    </Card>
+                  </CardActionArea>
+                </Grid>
               </Grid>
-              <Grid item xs={12} md={6}>
-                <CardActionArea component="a" href="/">
-                  <Card className={classes.card}>
-                    <div className={classes.cardDetails}>
-                      <CardContent>
-                        <Typography component="h2" variant="h5">
-
-                          Organized & analyzed
-                        </Typography>
-                        <Typography variant="subtitle1"  style={{color: 'teal'}}>
-                        organize
-                        </Typography>
-                        <Typography variant="subtitle1" paragraph>
-                        Responses to your surveys are neatly and automatically collected in Forms, with real time response info and charts. Or, download a csv/json or load data in google sheets.                        </Typography>
-
-                      </CardContent>
-                    </div>
-                    <Hidden smDown>
-                      <CardMedia className={classes.cardMedia} image="https://images.pexels.com/photos/4823233/pexels-photo-4823233.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" title="" />
-                    </Hidden>
-                  </Card>
-                </CardActionArea>
-              </Grid>
-            </Grid>
-           </div>
+            </div>
           </Container>
-
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
         </div>
       </main>
-
-
       <footer className={classes.footer} style={{}}>
         <Typography variant="h6" align="center" gutterBottom>
           Velocity Forms <small>(An Open source clone of google forms)</small>
         </Typography>
         <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-         No Copyright issue. This project is <Link color="inherit" href="https://github.com/rohitsaini1196/google-forms">open source</Link>{'. '}
-       Feel free to use anything that you find helpful, Give credit if you want.
+          No Copyright issue. This project is <Link color="inherit" href="https://github.com/rohitsaini1196/google-forms">open source</Link>{'. '}
+          Feel free to use anything that you find helpful, Give credit if you want.
         </Typography>
         <Copyright />
       </footer>
     </div>
   );
 }
-
-
-
-var gg = `
-<Typography variant="h5" align="center" color="textSecondary" paragraph>
-            Plan your next camping trip, manage event registrations, whip up a quick poll, create a pop quiz, and much more.
-
-
-              Fast and easy solution for collecting data, conducting quizzes, getting something reviewed within seconds. With user friedly interface and smart features you can even conduct exams.
-            </Typography>
-            `

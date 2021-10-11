@@ -6,9 +6,8 @@ var UserSchema = new mongoose.Schema({
   email: String,
   image: {type: String},
   createdForms: []
- }, {timestamps: true});
+}, {timestamps: true});
 
 UserSchema.plugin(mongoosePaginate);
 User = mongoose.model('User', UserSchema, 'Users');
 module.exports = User;
-
