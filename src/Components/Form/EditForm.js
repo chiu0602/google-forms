@@ -88,7 +88,7 @@ function EditForm(props) {
   const [formID, setFormID] = React.useState("");
 
 
-  const [formDeatils, setFormDetails] = React.useState({});
+  const [formDetails, setFormDetails] = React.useState({});
   const [openOfAlert, setOpenOfAlert] = React.useState(false);
 
   React.useEffect(() => {
@@ -96,7 +96,7 @@ function EditForm(props) {
 }, [])
 
   const clipToClipboard = () => {
-    navigator.clipboard.writeText(window.location.origin + "/s/" + formDeatils._id)
+    navigator.clipboard.writeText(window.location.origin + "/s/" + formDetails._id)
     handleClickOfAlert();
     handleClose();
   }
@@ -137,23 +137,21 @@ function EditForm(props) {
       .then((data) => {
         // console.log(data);
         setFormDetails(data)
-        },
-        error => {
+      }, error => {
         const resMessage =
           (error.response &&
           error.response.data &&
           error.response.data.message) ||
           error.message ||
           error.toString();
-          console.log(resMessage);
-        }
-      );
+        console.log(resMessage);
+      });
     }
   },[props.match.params.formId]);
 
   return (
     <Root>
-      { formDeatils.createdBy === user.id ? (
+      { formDetails.createdBy === user.id ? (
         <div>
           <div className={classes.root}>
             <AppBar position="static" style={{backgroundColor: 'white'}} elevation={2}>
@@ -167,7 +165,7 @@ function EditForm(props) {
                     <ViewListIcon />
                 </IconButton>
                 <Typography variant="h6" noWrap style={{marginTop: '8.5px', color:'black'}}>
-                    {formDeatils.name}
+                    {formDetails.name}
                 </Typography>
 
                 <IconButton aria-label="Rohit Saini's form" size="large">
@@ -223,7 +221,7 @@ function EditForm(props) {
                 <Paper className={classes.paper}>
                   <Grid container alignContent="space-between" alignItems="center">
                     <Grid item>
-                      <Typography variant="body1">{window.location.origin + "/s/" + formDeatils._id}</Typography>
+                      <Typography variant="body1">{window.location.origin + "/s/" + formDetails._id}</Typography>
                     </Grid>
                     <Grid item>
                       <IconButton className={classes.button} aria-label="Add" size="medium" onClick={clipToClipboard} ><FilterNoneIcon /></IconButton>
@@ -259,10 +257,10 @@ function EditForm(props) {
           </div>
           <div>
             <TabPanel value={value} index={0}>
-              <QuestionsTab formData={formDeatils} />
+              <QuestionsTab formData={formDetails} />
             </TabPanel>
             <TabPanel value={value} index={1}>
-              <ResponseTab formData={formDeatils} formId={formID} />
+              <ResponseTab formData={formDetails} formId={formID} />
             </TabPanel>
           </div>
         </div>
