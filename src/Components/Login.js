@@ -1,45 +1,62 @@
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { styled } from '@mui/material/styles';
 import authService from '../services/authService';
 import { useHistory } from "react-router-dom";
 import React from 'react';
 
 
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@mui/material/AppBar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import { makeStyles } from '@mui/styles';
 
-import ViewListIcon from '@material-ui/icons/ViewList';
+import ViewListIcon from '@mui/icons-material/ViewList';
 
 import GoogleButton from 'react-google-button'
-import Avatar from "@material-ui/core/Avatar";
+import Avatar from "@mui/material/Avatar";
 
-const useStyles = makeStyles((theme) => ({
-    icon: {
+const PREFIX = 'Login';
+
+const classes = {
+    icon: `${PREFIX}-icon`,
+    root: `${PREFIX}-root`,
+    menuButton: `${PREFIX}-menuButton`,
+    title: `${PREFIX}-title`
+};
+
+const Root = styled('div')((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.icon}`]: {
       marginRight: theme.spacing(1),
     },
-    root: {
+
+    [`& .${classes.root}`]: {
       flexGrow: 1,
     },
-    menuButton: {
+
+    [`& .${classes.menuButton}`]: {
       marginRight: theme.spacing(2),
     },
-    title: {
+
+    [`& .${classes.title}`]: {
       flexGrow: 1,
-    },
-  }));
+    }
+}));
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 
 function Login(props){
-    const classes = useStyles();
+
     let history = useHistory();
     const [isLogined , setIsLogined] = React.useState(false);
     const { from } = props.location.state || { from: { pathname: '/' } }
-    
+
     React.useEffect(()=>{
         setIsLogined(authService.isAuthenticated())
     }, [])
@@ -49,7 +66,7 @@ function Login(props){
         authService.loginWithGoogle(response)
         .then(() => {
           console.log(from.pathname);
-          
+
           if(from.pathname == "/login"){
             history.push("/");
 
@@ -65,7 +82,7 @@ function Login(props){
               error.message ||
               error.toString();
             console.log(resMessage);
-          }      
+          }
           );
     }
 
@@ -77,7 +94,7 @@ function Login(props){
     const handleLoginFailure = (response)=>{
         console.log('Failed to log in');
     }
-    
+
     const handleLogoutFailure = (response)=>{
         console.log('Failed to log out');
     }
@@ -88,14 +105,14 @@ function Login(props){
       }
 
 
-    return(
-        <div>
+    return (
+        <Root>
              <CssBaseline />
             <div style={{display: 'flex', flexGrow: 1, textAlign: 'start'}}>
                 <AppBar position="relative" style={{backgroundColor: 'teal'}}>
                 <Toolbar>
                     <ViewListIcon className={classes.icon} onClick={()=>{history.push('/')}} />
-                   
+
                     <Typography variant="h6" color="inherit" noWrap className={classes.title}>
                     Velocity Forms
                     </Typography>
@@ -112,11 +129,11 @@ function Login(props){
 
             <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
             {isLogined ?
-                "": 
+                "":
                 <GoogleLogin
                     clientId={CLIENT_ID}
                     render={renderProps => (
-                        <GoogleButton onClick={renderProps.onClick} disabled={renderProps.disabled} style={{textAlign: 'center', alignSelf: 'center'}} />                      
+                        <GoogleButton onClick={renderProps.onClick} disabled={renderProps.disabled} style={{textAlign: 'center', alignSelf: 'center'}} />
                       )}
                     buttonText='Login'
                     onSuccess={loginGoogle}
@@ -143,10 +160,10 @@ function Login(props){
                }
             </div>
         </div>
-                
+
             </main>
-        </div>
-    )
+        </Root>
+    );
 }
 
 export default Login;

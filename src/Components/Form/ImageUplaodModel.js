@@ -1,11 +1,11 @@
 import React from 'react'
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 import uploadService from '../../services/uploadService';
 
@@ -21,7 +21,7 @@ function ImageUplaodModel(props){
 
 
   const uploadImage = ()=>{
-    console.log(props.contextData);  
+    console.log(props.contextData);
     console.log(image);
     console.log(image.size);
 
@@ -49,13 +49,13 @@ function ImageUplaodModel(props){
              error.message ||
              error.toString();
              setImageWarning(resMessage);
-         }      
+         }
          );
     }
 
 
-    
-    
+
+
   }
 
     return(
@@ -65,7 +65,7 @@ function ImageUplaodModel(props){
                   <DialogContent>
                     <DialogContentText>
                       Hey, Creating a Community is fun and easy, just fill these easy fields and get your personlized gang ready within seconds.
-                      for question 
+                      for question
                     </DialogContentText>
                     <TextField
                       type="file"
@@ -81,12 +81,12 @@ function ImageUplaodModel(props){
                       Cancel
                     </Button>
                     <Button color="primary" onClick={uploadImage}>
-                      Upload 
+                      Upload
                     </Button>
                   </DialogActions>
                 </Dialog>
         </div>
     )
-} 
+}
 
 export default ImageUplaodModel;

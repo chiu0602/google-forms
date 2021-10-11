@@ -1,44 +1,57 @@
 import React from 'react';
+import { styled } from '@mui/material/styles';
 import auth from '../../services/authService';
 import formService from '../../services/formService';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
 import OneForm from './OneForm';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 
-const useStyles = makeStyles((theme)=>
-    ({
-        root: {
-          maxWidth: 345,
-        },
-        media: {
-          height: 140,
-        },
-        cardGrid: {
-            paddingTop: theme.spacing(8),
-            paddingBottom: theme.spacing(8),
-          },
-      })
-);
+const PREFIX = 'Forms';
+
+const classes = {
+    root: `${PREFIX}-root`,
+    media: `${PREFIX}-media`,
+    cardGrid: `${PREFIX}-cardGrid`
+};
+
+const Root = styled('div')((
+    {
+        theme
+    }
+) => ({
+    [`& .${classes.root}`]: {
+      maxWidth: 345,
+    },
+
+    [`& .${classes.media}`]: {
+      height: 140,
+    },
+
+    [`& .${classes.cardGrid}`]: {
+        paddingTop: theme.spacing(8),
+        paddingBottom: theme.spacing(8),
+      }
+}));
 
 
 function Forms(props) {
-    const classes = useStyles();
+
 
     const [user, setUser] = React.useState({})
     const [forms, setForms] = React.useState([])
     const [loadingForms, setLoadingForms] = React.useState(true);
 
     React.useEffect(()=>{
-        setUser(auth.getCurrentUser);  
+        setUser(auth.getCurrentUser);
     }, [])
-    
+
     React.useEffect(()=>{
 
         if(props.userId === undefined){
@@ -46,7 +59,7 @@ function Forms(props) {
         } else{
            // console.log(props.userId);
             formService.getForms(props.userId)
-            .then((forms2) => { 
+            .then((forms2) => {
                // console.log(forms2);
 
                 setForms(forms2);
@@ -63,14 +76,14 @@ function Forms(props) {
                     console.log(resMessage);
                 }
             );
-            
+
         }
-        
-        
+
+
     }, [props.userId])
 
     return (
-        <div>
+        <Root>
             <div>
             <CssBaseline />
             {loadingForms ? (<CircularProgress />):""}
@@ -82,13 +95,13 @@ function Forms(props) {
 
               </Grid>
             </Container>
-                
-            
+
+
             </div>
             <div>
-            
+
             </div>
-        </div>
+        </Root>
     );
 }
 

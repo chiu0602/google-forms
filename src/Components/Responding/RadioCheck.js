@@ -1,33 +1,46 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormLabel from '@material-ui/core/FormLabel';
-import Button from '@material-ui/core/Button';
+import { styled } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormLabel from '@mui/material/FormLabel';
+import Button from '@mui/material/Button';
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
+const PREFIX = 'RadioCheck';
+
+const classes = {
+  formControl: `${PREFIX}-formControl`,
+  button: `${PREFIX}-button`
+};
+
+const Root = styled('div')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.formControl}`]: {
     margin: theme.spacing(3),
   },
-  button: {
+
+  [`& .${classes.button}`]: {
     margin: theme.spacing(1, 1, 0, 0),
-  },
+  }
 }));
 
 export default function ErrorRadios() {
-  const classes = useStyles();
+
   const [value, setValue] = React.useState('');
   const [error, setError] = React.useState(false);
 
 
   const handleRadioChange = (event) => {
       console.log(event.target.value);
-      
+
     setValue(event.target.value);
-    
+
     setError(false);
   };
 
@@ -36,19 +49,17 @@ export default function ErrorRadios() {
   };
 
   return (
-    
-        <div>
-          <RadioGroup aria-label="quiz" name="quiz" value={value} onChange={handleRadioChange}>
+    <Root>
+      <RadioGroup aria-label="quiz" name="quiz" value={value} onChange={handleRadioChange}>
 
-          {["", "", ""].map((op, j)=>(
-              <FormControlLabel key={j} value={j} control={<Radio />} label={"the worst"+ j} />
-          ))}
-        </RadioGroup>
-        
-        <Button variant="outlined" color="primary" className={classes.button} onClick={handleSubmit}>
-          Check Answer
-        </Button>
-        </div>
-      
+      {["", "", ""].map((op, j)=>(
+          <FormControlLabel key={j} value={j} control={<Radio />} label={"the worst"+ j} />
+      ))}
+    </RadioGroup>
+
+    <Button variant="outlined" color="primary" className={classes.button} onClick={handleSubmit}>
+      Check Answer
+    </Button>
+    </Root>
   );
 }

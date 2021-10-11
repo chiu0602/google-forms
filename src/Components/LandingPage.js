@@ -1,66 +1,81 @@
 import React from 'react';
 
+import { styled } from '@mui/material/styles';
+
 import { useHistory } from "react-router-dom";
 
 
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
-import ViewListIcon from '@material-ui/icons/ViewList';
-import Paper from '@material-ui/core/Paper';
-import Hidden from '@material-ui/core/Hidden';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import AcUnitIcon from '@material-ui/icons/AcUnit';
-import IconButton from '@material-ui/core/IconButton';
+import AppBar from '@mui/material/AppBar';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import { makeStyles } from '@mui/styles';
+import Container from '@mui/material/Container';
+import Link from '@mui/material/Link';
+import ViewListIcon from '@mui/icons-material/ViewList';
+import Paper from '@mui/material/Paper';
+import Hidden from '@mui/material/Hidden';
+import CardActionArea from '@mui/material/CardActionArea';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import IconButton from '@mui/material/IconButton';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      <Link color="inherit" href="https://www.stillthristy.in/">
-      Rohit Saini
-      </Link>
-      { ' © '}
-      <Link color="inherit" href="https://github.com/rohitsaini1196">
-        GitHub
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+const PREFIX = 'LandingPage';
 
-const useStyles = makeStyles((theme) => ({
-  icon: {
+const classes = {
+  icon: `${PREFIX}-icon`,
+  card: `${PREFIX}-card`,
+  cardDetails: `${PREFIX}-cardDetails`,
+  cardMedia: `${PREFIX}-cardMedia`,
+  heroContent: `${PREFIX}-heroContent`,
+  heroButtons: `${PREFIX}-heroButtons`,
+  footer: `${PREFIX}-footer`,
+  mainFeaturedPost: `${PREFIX}-mainFeaturedPost`,
+  overlay: `${PREFIX}-overlay`,
+  mainFeaturedPostContent: `${PREFIX}-mainFeaturedPostContent`,
+  buttons: `${PREFIX}-buttons`,
+  buttongg: `${PREFIX}-buttongg`,
+  root: `${PREFIX}-root`,
+  menuButton: `${PREFIX}-menuButton`,
+  title: `${PREFIX}-title`
+};
+
+const StyledTypography = styled(Typography)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.icon}`]: {
     marginRight: theme.spacing(1),
   },
-  card: {
+
+  [`& .${classes.card}`]: {
     display: 'flex',
   },
-  cardDetails: {
+
+  [`& .${classes.cardDetails}`]: {
     flex: 1,
   },
-  cardMedia: {
+
+  [`& .${classes.cardMedia}`]: {
     width: 160,
   },
-  heroContent: {
+
+  [`& .${classes.heroContent}`]: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6),
   },
-  heroButtons: {
+
+  [`& .${classes.heroButtons}`]: {
     marginTop: theme.spacing(4),
   },
-  
-  footer: {
+
+  [`& .${classes.footer}`]: {
     backgroundColor: '#DAE0E2',
     padding: theme.spacing(2),
     position: 'relative',
@@ -68,7 +83,8 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     left: 0
   },
-  mainFeaturedPost: {
+
+  [`& .${classes.mainFeaturedPost}`]: {
     position: 'relative',
     backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
@@ -78,7 +94,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
   },
-  overlay: {
+
+  [`& .${classes.overlay}`]: {
     position: 'absolute',
     top: 0,
     bottom: 0,
@@ -86,7 +103,8 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     backgroundColor: 'rgba(0,0,0,.3)',
   },
-  mainFeaturedPostContent: {
+
+  [`& .${classes.mainFeaturedPostContent}`]: {
     position: 'relative',
     padding: theme.spacing(3),
     [theme.breakpoints.up('md')]: {
@@ -94,31 +112,52 @@ const useStyles = makeStyles((theme) => ({
       paddingRight: 0,
     },
   },
-  buttons : {
+
+  [`& .${classes.buttons}`]: {
     '& > *': {
       margin: theme.spacing(1),
     },
   },
-  buttongg: {
+
+  [`& .${classes.buttongg}`]: {
     backgroundColor: 'teal'
   },
-  root: {
+
+  [`& .${classes.root}`]: {
     flexGrow: 1,
   },
-  menuButton: {
+
+  [`& .${classes.menuButton}`]: {
     marginRight: theme.spacing(2),
   },
-  title: {
+
+  [`& .${classes.title}`]: {
     flexGrow: 1,
-  },
+  }
 }));
+
+function Copyright() {
+  return (
+    <StyledTypography variant="body2" color="textSecondary" align="center">
+      <Link color="inherit" href="https://www.stillthristy.in/">
+      Rohit Saini
+      </Link>
+      { ' © '}
+      <Link color="inherit" href="https://github.com/rohitsaini1196">
+        GitHub
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </StyledTypography>
+  );
+}
 
 const cards = [];
 
 export default function LangingPage() {
 
 
-  const classes = useStyles();
+
   let history = useHistory();
 
   function loginClick(){
@@ -136,7 +175,7 @@ export default function LangingPage() {
               Velocity Forms
             </Typography>
             <Button color="inherit" onClick={loginClick}>Login</Button>
-          
+
           </Toolbar>
         </AppBar>
       </div>
@@ -168,9 +207,9 @@ export default function LangingPage() {
                       Login
                     </Button>
                   </div>
-                 
-              
-                  
+
+
+
                 </div>
               </Grid>
             </Grid>
@@ -178,7 +217,7 @@ export default function LangingPage() {
            <br></br>
            <br></br>
            <br></br>
-           
+
 
            <div>
            <Grid container spacing={4}>
@@ -196,10 +235,10 @@ export default function LangingPage() {
                         <Typography variant="subtitle1" paragraph>
                         Use your own photo or logo, and Forms will pick just the right colors to complete your own unique form, or choose from a set of curated themes to set the tone. We can store images for future.
                         </Typography>
-                       
+
                       </CardContent>
                     </div>
-                    <Hidden xsDown>
+                    <Hidden smDown>
                       <CardMedia className={classes.cardMedia} image="https://images.pexels.com/photos/4823233/pexels-photo-4823233.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" title="" />
                     </Hidden>
                   </Card>
@@ -211,7 +250,7 @@ export default function LangingPage() {
                     <div className={classes.cardDetails}>
                       <CardContent>
                         <Typography component="h2" variant="h5">
-                         
+
                           Organized & analyzed
                         </Typography>
                         <Typography variant="subtitle1"  style={{color: 'teal'}}>
@@ -219,10 +258,10 @@ export default function LangingPage() {
                         </Typography>
                         <Typography variant="subtitle1" paragraph>
                         Responses to your surveys are neatly and automatically collected in Forms, with real time response info and charts. Or, download a csv/json or load data in google sheets.                        </Typography>
-                       
+
                       </CardContent>
                     </div>
-                    <Hidden xsDown>
+                    <Hidden smDown>
                       <CardMedia className={classes.cardMedia} image="https://images.pexels.com/photos/4823233/pexels-photo-4823233.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" title="" />
                     </Hidden>
                   </Card>
@@ -238,8 +277,8 @@ export default function LangingPage() {
           <br></br>
         </div>
       </main>
-      
-      
+
+
       <footer className={classes.footer} style={{}}>
         <Typography variant="h6" align="center" gutterBottom>
           Velocity Forms <small>(An Open source clone of google forms)</small>

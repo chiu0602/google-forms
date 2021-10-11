@@ -1,32 +1,32 @@
 import React from 'react'
 //import QuestionHeader from './QuestionHeader';
-import {Grid} from '@material-ui/core';
+import {Grid} from '@mui/material';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-import { Paper, Typography } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import CropOriginalIcon from '@material-ui/icons/CropOriginal';
-import CloseIcon from '@material-ui/icons/Close';
-import Radio from '@material-ui/core/Radio';
+import { Paper, Typography } from '@mui/material';
+import TextField from '@mui/material/TextField';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import CropOriginalIcon from '@mui/icons-material/CropOriginal';
+import CloseIcon from '@mui/icons-material/Close';
+import Radio from '@mui/material/Radio';
 
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import AccordionActions from '@material-ui/core/AccordionActions';
-import Divider from '@material-ui/core/Divider';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import FilterNoneIcon from '@material-ui/icons/FilterNone';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import DragIndicatorIcon from '@material-ui/icons/DragIndicator';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import AccordionActions from '@mui/material/AccordionActions';
+import Divider from '@mui/material/Divider';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import FilterNoneIcon from '@mui/icons-material/FilterNone';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import ImageUplaodModel from './ImageUplaodModel';
 import formService from '../../services/formService';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import SaveIcon from '@material-ui/icons/Save';
+import CircularProgress from '@mui/material/CircularProgress';
+import SaveIcon from '@mui/icons-material/Save';
 
 function QuestionsTab(props) {
 
@@ -35,10 +35,10 @@ function QuestionsTab(props) {
   const [imageContextData, setImageContextData] = React.useState({question: null, option: null});
   const [formData, setFormData] = React.useState({});
   const [loadingFormData, setLoadingFormData] = React.useState(true);
-  
+
 
   React.useEffect(()=>{
-    
+
     if(props.formData.questions !== undefined){
       //console.log(props.formData.questions.length);
       if(props.formData.questions.length === 0){
@@ -47,10 +47,10 @@ function QuestionsTab(props) {
         setQuestions(props.formData.questions)
       }
       setLoadingFormData(false)
-    } 
+    }
     setFormData(props.formData)
   }, [props.formData])
-  
+
 
   function saveQuestions(){
     console.log("auto saving questions initiated");
@@ -62,7 +62,7 @@ function QuestionsTab(props) {
     }
 
     formService.autoSave(data)
-    .then((result) => {     
+    .then((result) => {
          console.log(result);
          setQuestions(result.questions)
         },
@@ -76,7 +76,7 @@ function QuestionsTab(props) {
             console.log(resMessage);
         }
     );
-    
+
   }
 
   function checkImageHereOrNotForQuestion(gg){
@@ -104,7 +104,7 @@ function QuestionsTab(props) {
   }
 
   function copyQuestion(i){
-    let qs = [...questions]; 
+    let qs = [...questions];
     expandCloseAll();
     const myNewOptions = [];
     qs[i].options.forEach(opn => {
@@ -122,7 +122,7 @@ function QuestionsTab(props) {
     });
     const qImage = qs[i].questionImage || "";
     var newQuestion = {questionText: qs[i].questionText, questionImage : qImage ,options:myNewOptions, open: true}
-     setQuestions(questions=> [...questions, newQuestion]); 
+     setQuestions(questions=> [...questions, newQuestion]);
   }
 
   const handleImagePopupOpen = () => {
@@ -131,17 +131,17 @@ function QuestionsTab(props) {
 
 
   function uploadImage(i, j){
-    
+
     setImageContextData({
       question: i,
       option: j
     });
     handleImagePopupOpen();
-    
+
   }
 
   function updateImageLink(link, context){
-    
+
     var optionsOfQuestion = [...questions];
     var i = context.question
 
@@ -155,7 +155,7 @@ function QuestionsTab(props) {
   }
 
   function deleteQuestion(i){
-    let qs = [...questions]; 
+    let qs = [...questions];
     if(questions.length > 1){
       qs.splice(i, 1);
     }
@@ -198,7 +198,7 @@ function QuestionsTab(props) {
   };
 
   function showAsQuestion(i){
-    let qs = [...questions];  
+    let qs = [...questions];
      qs[i].open = false;
      setQuestions(qs);
   }
@@ -208,7 +208,7 @@ function QuestionsTab(props) {
     if(optionsOfQuestion[i].options.length < 5){
       optionsOfQuestion[i].options.push({optionText: "Option " + (optionsOfQuestion[i].options.length + 1)})
     } else{
-      console.log("Max  5 options ");  
+      console.log("Max  5 options ");
     }
     //console.log(optionsOfQuestion);
     setQuestions(optionsOfQuestion)
@@ -220,23 +220,23 @@ function QuestionsTab(props) {
       optionsOfQuestion[i].options.splice(j, 1);
       setQuestions(optionsOfQuestion)
       console.log(i + "__" + j);
-    }   
+    }
   }
 
   function expandCloseAll(){
-    let qs = [...questions]; 
-     for (let j = 0; j < qs.length; j++) {  
+    let qs = [...questions];
+     for (let j = 0; j < qs.length; j++) {
       qs[j].open = false;
      }
      setQuestions(qs);
   }
 
   function handleExpand(i){
-    let qs = [...questions]; 
+    let qs = [...questions];
     for (let j = 0; j < qs.length; j++) {
       if(i ===j ){
         qs[i].open = true;
- 
+
       } else{
         qs[j].open = false;
        }
@@ -245,7 +245,7 @@ function QuestionsTab(props) {
   }
 
   function questionsUI(){
-    return  questions.map((ques, i)=> (
+    return questions.map((ques, i)=> (
       <Draggable key={i} draggableId={i + 'id'} index={i}>
                   {(provided, snapshot) => (
                     <div
@@ -258,9 +258,9 @@ function QuestionsTab(props) {
             <div style={{width:'100%', marginBottom: '-7px' }}>
               <DragIndicatorIcon style={{transform: "rotate(-90deg)", color:'#DAE0E2'}} fontSize="small"/>
             </div>
-          
+
             <Accordion onChange={()=>{handleExpand(i)}} expanded={questions[i].open}>
-              <AccordionSummary            
+              <AccordionSummary
                 aria-controls="panel1a-content"
                 id="panel1a-header"
                 elevation={1} style={{width:'100%'}}
@@ -268,7 +268,7 @@ function QuestionsTab(props) {
                 { !questions[i].open ? (
               <div style={{display: 'flex',flexDirection:'column', alignItems:'flex-start', marginLeft: '3px', paddingTop: '15px', paddingBottom: '15px'}}>
                 {/* <TextField id="standard-basic" label=" " value="Question" InputProps={{ disableUnderline: true }} />  */}
-                
+
                 <Typography variant="subtitle1" style={{marginLeft: '0px'}}>{i+1}.  {ques.questionText}</Typography>
 
 
@@ -277,9 +277,9 @@ function QuestionsTab(props) {
                     <img src={ques.questionImage} width="400px" height="auto" /><br></br><br></br>
                   </div>
                 ): "" }
-                
+
                 {ques.options.map((op, j)=>(
-                 
+
                  <div key={j}>
                    <div style={{display: 'flex'}}>
                     <FormControlLabel disabled control={<Radio style={{marginRight: '3px', }} />} label={
@@ -295,28 +295,30 @@ function QuestionsTab(props) {
                     ): "" }
                   </div>
                  </div>
-                ))}  
-              </div>            
-              ): ""}   
+                ))}
+              </div>
+              ): ""}
               </AccordionSummary>
 
               <AccordionDetails>
               <div style={{display: 'flex',flexDirection:'column', alignItems:'flex-start', marginLeft: '15px', marginTop:'-15px'}}>
                 <div style={{display:'flex', width: '100%', justifyContent: 'space-between'}}>
                   <Typography style={{marginTop:'20px'}}>{i+1}.</Typography>
-                  <TextField 
-                        fullWidth={true} 
-                        placeholder="Question Text" 
-                        style={{marginBottom: '18px'}}  
-                        rows={2}
-                        rowsMax={20}
+                  <TextField
+                        fullWidth={true}
+                        placeholder="Question Text"
+                        style={{marginBottom: '18px'}}
+                        maxRows={20}
                         multiline={true}
 
                         value={ques.questionText}
                         variant="filled"
                       onChange={(e)=>{handleQuestionValue(e.target.value, i)}}
                   />
-                  <IconButton aria-label="upload image" onClick={()=>{uploadImage(i, null)}}>
+                  <IconButton
+                    aria-label="upload image"
+                    onClick={()=>{uploadImage(i, null)}}
+                    size="large">
                         <CropOriginalIcon />
                   </IconButton>
                 </div>
@@ -327,7 +329,7 @@ function QuestionsTab(props) {
                         <div>
                             <div style={{width:'150px', display: 'flex', alignItems:'flex-start', paddingLeft:'20px'}}>
                             <img src={ques.questionImage} width="150px" height="auto"/>
-                            <IconButton style={{marginLeft: '-15px', marginTop: '-15px',zIndex:999, backgroundColor: 'lightgrey', color:'grey'}} 
+                            <IconButton style={{marginLeft: '-15px', marginTop: '-15px',zIndex:999, backgroundColor: 'lightgrey', color:'grey'}}
                                         size="small"
                                         onClick={()=>{
                                           updateImageLink("", {question: i, option: null})
@@ -339,27 +341,27 @@ function QuestionsTab(props) {
                        ): ""
                      }
                 </div>
-                
+
                 <div style={{width: '100%'}}>
                 {ques.options.map((op, j)=>(
-                 
+
                  <div key={j}>
                       <div  style={{display:'flex', flexDirection:'row', marginLeft:'-12.5px', justifyContent: 'space-between', paddingTop: '5px', paddingBottom: '5px'}}>
 
-                          <Radio disabled /> 
-                          <TextField 
-                            fullWidth={true} 
-                            placeholder="Option text" 
-                            style={{marginTop: '5px'}} 
+                          <Radio disabled />
+                          <TextField
+                            fullWidth={true}
+                            placeholder="Option text"
+                            style={{marginTop: '5px'}}
                             value={ques.options[j].optionText}
                             onChange={(e)=>{handleOptionValue(e.target.value, i, j)}}
                           />
 
-                          <IconButton aria-label="upload image" onClick={()=>{uploadImage(i, j)}}>
+                          <IconButton aria-label="upload image" onClick={()=>{uploadImage(i, j)}} size="large">
                             <CropOriginalIcon />
                           </IconButton>
 
-                          <IconButton aria-label="delete" onClick={()=>{removeOption(i, j)}}>
+                          <IconButton aria-label="delete" onClick={()=>{removeOption(i, j)}} size="large">
                             <CloseIcon />
                           </IconButton>
                           </div>
@@ -370,7 +372,7 @@ function QuestionsTab(props) {
                             <div>
                               <div style={{width:'150px', display: 'flex', alignItems:'flex-start', paddingLeft:'20px'}}>
                                 <img src={op.optionImage} width="90px" height="auto"/>
-                                
+
                                 <IconButton style={{marginLeft: '-15px', marginTop: '-15px',zIndex:999, backgroundColor: 'lightgrey', color:'grey'}}
                                             size="small"
                                             onClick={()=>{
@@ -381,23 +383,23 @@ function QuestionsTab(props) {
                                 </IconButton>
                               </div>
                               <br></br>
-                              <br></br>  
+                              <br></br>
                             </div>
                             ): ""
                           }
                           </div>
                  </div>
-                ))}  
-                </div>  
-                
-                
+                ))}
+                </div>
+
+
                 {ques.options.length < 5 ? (
                   <div>
                   <FormControlLabel disabled control={<Radio />} label={
                     <Button size="small" onClick={()=>{addOption(i)}} style={{textTransform: 'none', marginLeft:"-5px"}}>
                       Add Option
                     </Button>
-                  } /> 
+                  } />
                   </div>
                 ): ""}
 
@@ -409,22 +411,22 @@ function QuestionsTab(props) {
               </AccordionDetails>
 
               <Divider />
-              
-              <AccordionActions>               
-                    <IconButton aria-label="View" onClick={()=>{showAsQuestion(i)}}>
+
+              <AccordionActions>
+                    <IconButton aria-label="View" onClick={()=>{showAsQuestion(i)}} size="large">
                       <VisibilityIcon />
                     </IconButton>
 
-                    <IconButton aria-label="Copy" onClick={()=>{copyQuestion(i)}}>
+                    <IconButton aria-label="Copy" onClick={()=>{copyQuestion(i)}} size="large">
                       <FilterNoneIcon />
                     </IconButton>
                     <Divider orientation="vertical" flexItem/>
 
-                    <IconButton aria-label="delete" onClick={()=>{deleteQuestion(i)}}>
+                    <IconButton aria-label="delete" onClick={()=>{deleteQuestion(i)}} size="large">
                       <DeleteOutlineIcon />
                     </IconButton>
 
-                    <IconButton aria-label="Image">
+                    <IconButton aria-label="Image" size="large">
                       <MoreVertIcon />
                     </IconButton>
               </AccordionActions>
@@ -434,81 +436,81 @@ function QuestionsTab(props) {
                     </div>
                   )}
       </Draggable>
-      
+
      )
-    )
+    );
   }
 
 
 
 
   return (
-       <div style={{marginTop:'15px', marginBottom: '7px', paddingBottom:"30px"}}>
-           <Grid
-            container
-            direction="column"
-            justify="center"
-            alignItems="center"
-            >
-              {loadingFormData ? (<CircularProgress />):""}
-              
-             <Grid item xs={12} sm={5} style={{width: '100%'}}>
-                 
-                  <Grid style={{borderTop: '10px solid teal', borderRadius: 10}}>
-                      <div>
-                          <div>
-                            <Paper elevation={2} style={{width:'100%'}}>
-                              <div style={{display: 'flex',flexDirection:'column', alignItems:'flex-start', marginLeft: '15px', paddingTop: '20px', paddingBottom: '20px'}}>
-                                <Typography variant="h4" style={{fontFamily:'sans-serif Roboto', marginBottom:"15px"}}>
-                                  {formData.name}
-                                </Typography>
-                                <Typography variant="subtitle1">{formData.description}</Typography>
-                              </div>
-                            </Paper>
-                          </div> 
-                      </div>       
-                  </Grid>  
+    <div style={{marginTop:'15px', marginBottom: '7px', paddingBottom:"30px"}}>
+        <Grid
+         container
+         direction="column"
+         justifyContent="center"
+         alignItems="center"
+         >
+           {loadingFormData ? (<CircularProgress />):""}
 
-                  <Grid style={{paddingTop: '10px'}}>
-                    <div>
-                    <ImageUplaodModel handleImagePopOpen={openUploadImagePop} handleImagePopClose={()=>{setOpenUploadImagePop(false)}} updateImageLink={updateImageLink} contextData={imageContextData}/>
+          <Grid item xs={12} sm={5} style={{width: '100%'}}>
 
-                    <DragDropContext onDragEnd={onDragEnd}>
-                      <Droppable droppableId="droppable">
-                        {(provided, snapshot) => (
-                          <div
-                            {...provided.droppableProps}
-                            ref={provided.innerRef}
-                          >
-                            {questionsUI()}
+               <Grid style={{borderTop: '10px solid teal', borderRadius: 10}}>
+                   <div>
+                       <div>
+                         <Paper elevation={2} style={{width:'100%'}}>
+                           <div style={{display: 'flex',flexDirection:'column', alignItems:'flex-start', marginLeft: '15px', paddingTop: '20px', paddingBottom: '20px'}}>
+                             <Typography variant="h4" style={{fontFamily:'sans-serif Roboto', marginBottom:"15px"}}>
+                               {formData.name}
+                             </Typography>
+                             <Typography variant="subtitle1">{formData.description}</Typography>
+                           </div>
+                         </Paper>
+                       </div>
+                   </div>
+               </Grid>
 
-                            {provided.placeholder}
-                          </div>
-                        )}
-                      </Droppable>
-                    </DragDropContext>
-                    <div>                       
-                        <Button
-                          variant="contained"
-                          
-                          onClick={addMoreQuestionField}
-                          endIcon={<AddCircleIcon />}
-                          style={{margin: '5px'}}
-                        >Add Question </Button>
+               <Grid style={{paddingTop: '10px'}}>
+                 <div>
+                 <ImageUplaodModel handleImagePopOpen={openUploadImagePop} handleImagePopClose={()=>{setOpenUploadImagePop(false)}} updateImageLink={updateImageLink} contextData={imageContextData}/>
 
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          onClick={saveQuestions}
-                          style={{margin: '15px'}}
-                          endIcon={<SaveIcon />}
-                        >Save Questions </Button>
-                      </div>
-                    </div>
-                  </Grid>        
-              </Grid>           
+                 <DragDropContext onDragEnd={onDragEnd}>
+                   <Droppable droppableId="droppable">
+                     {(provided, snapshot) => (
+                       <div
+                         {...provided.droppableProps}
+                         ref={provided.innerRef}
+                       >
+                         {questionsUI()}
+
+                         {provided.placeholder}
+                       </div>
+                     )}
+                   </Droppable>
+                 </DragDropContext>
+                 <div>
+                     <Button
+                       variant="contained"
+
+                       onClick={addMoreQuestionField}
+                       endIcon={<AddCircleIcon />}
+                       style={{margin: '5px'}}
+                     >Add Question </Button>
+
+                     <Button
+                       variant="contained"
+                       color="primary"
+                       onClick={saveQuestions}
+                       style={{margin: '15px'}}
+                       endIcon={<SaveIcon />}
+                     >Save Questions </Button>
+                   </div>
+                 </div>
+               </Grid>
            </Grid>
-       </div>
+        </Grid>
+    </div>
   );
 }
 export default QuestionsTab

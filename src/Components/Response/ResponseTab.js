@@ -1,19 +1,26 @@
 import React from 'react'
+import { styled } from '@mui/material/styles';
 import formService from '../../services/formService';
 
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import { makeStyles } from '@mui/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 
 
-const useStyles = makeStyles({
-  table: {
+const PREFIX = 'ResponseTab';
+
+const classes = {
+  table: `${PREFIX}-table`
+};
+
+const StyledTableBody = styled(TableBody)({
+  [`& .${classes.table}`]: {
     minWidth: 650,
   },
 });
@@ -31,12 +38,12 @@ const rows = [
 ];
 
 function ResponseTab(props) {
-  const classes = useStyles();
+
 
   const [formData, setFormData] = React.useState({});
   const [responseData, setResponseData] = React.useState([]);
   const [questions, setQuestions] = React.useState([]);
-  
+
 
     React.useEffect(() => {
       if(props.formData){
@@ -48,8 +55,8 @@ function ResponseTab(props) {
       var formId = props.formId
       if(formId !== undefined && formId !== ""){
         formService.getResponse(formId)
-        .then((data) => { 
-      //      console.log(data);     
+        .then((data) => {
+      //      console.log(data);
             setResponseData(data)
            },
            error => {
@@ -69,7 +76,7 @@ function ResponseTab(props) {
     function getSelectedOption(qId, i, j){
       var oneResData = responseData[j];
       //console.log(oneResData);
-      
+
       var selectedOp = oneResData.response.filter(qss => qss.questionId === qId);
      console.log(selectedOp);
 
@@ -81,7 +88,7 @@ function ResponseTab(props) {
         return "not attempted"
       }
 
-      
+
       // return selectedOp[0].optionId;
       //this.students.filter(stud => stud.Class==className);
     }
@@ -92,51 +99,51 @@ function ResponseTab(props) {
     // }
 
 
-  
+
   return (
+    <div>
+       <p> Responses</p>
        <div>
-          <p> Responses</p>
-          <div>
-            <TableContainer component={Paper}>
-              <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>User</TableCell>
-                    {questions.map((ques, i)=>(
-                      <TableCell key={i} align="right">{ques.questionText}</TableCell>
-                    ))}
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                {/* <TableRow>
-                      <TableCell component="th" scope="row">
-                        aanounfdv
-                      </TableCell>
-                      <TableCell align="right">2</TableCell>
-                      <TableCell align="right">no</TableCell>
-                      <TableCell align="right">yes</TableCell>
-                     
-                    </TableRow> */}
-                  {responseData.map((rs, j) => (
-                    <TableRow key={j}>
-                      <TableCell component="th" scope="row">
-                        {rs.userId}
-                      </TableCell>
-                      {questions.map((ques, i)=>(
-                      <TableCell key={i} align="right">{getSelectedOption(ques._id, i,j)}</TableCell>
-                    ))}
-                      
-                    </TableRow>
-                  ))}
-                </TableBody>
-                
-              </Table>
-            </TableContainer>
-          </div>
+         <TableContainer component={Paper}>
+           <Table className={classes.table} aria-label="simple table">
+             <TableHead>
+               <TableRow>
+                 <TableCell>User</TableCell>
+                 {questions.map((ques, i)=>(
+                   <TableCell key={i} align="right">{ques.questionText}</TableCell>
+                 ))}
+               </TableRow>
+             </TableHead>
+             <StyledTableBody>
+             {/* <TableRow>
+                   <TableCell component="th" scope="row">
+                     aanounfdv
+                   </TableCell>
+                   <TableCell align="right">2</TableCell>
+                   <TableCell align="right">no</TableCell>
+                   <TableCell align="right">yes</TableCell>
 
+                 </TableRow> */}
+               {responseData.map((rs, j) => (
+                 <TableRow key={j}>
+                   <TableCell component="th" scope="row">
+                     {rs.userId}
+                   </TableCell>
+                   {questions.map((ques, i)=>(
+                   <TableCell key={i} align="right">{getSelectedOption(ques._id, i,j)}</TableCell>
+                 ))}
 
+                 </TableRow>
+               ))}
+             </StyledTableBody>
 
+           </Table>
+         </TableContainer>
        </div>
+
+
+
+    </div>
   );
 }
 export default ResponseTab

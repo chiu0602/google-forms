@@ -1,29 +1,29 @@
 import React from 'react'
-import { Paper, Typography } from '@material-ui/core';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import { makeStyles } from '@material-ui/core/styles';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import TextField from '@material-ui/core/TextField';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import CropOriginalIcon from '@material-ui/icons/CropOriginal';
-import CloseIcon from '@material-ui/icons/Close';
+import { Paper, Typography } from '@mui/material';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import ExpansionPanel from '@mui/material/ExpansionPanel';
+import ExpansionPanelSummary from '@mui/material/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@mui/material/ExpansionPanelDetails';
+import { makeStyles } from '@mui/styles';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import TextField from '@mui/material/TextField';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import CropOriginalIcon from '@mui/icons-material/CropOriginal';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 function QuestionsHeader() {
 
   const [questions, setQuestions]= React.useState([{questionText: "Question", options : [{optionText: "option 1"}], open: false}]);
-  
+
 
   function addMoreQuestionField(){
       expandCloseAll(); //I AM GOD
@@ -35,7 +35,7 @@ function QuestionsHeader() {
     if(optionsOfQuestion[i].options.length < 5){
       optionsOfQuestion[i].options.push({optionText: "option gg"})
     } else{
-      console.log("Max  5 options ");  
+      console.log("Max  5 options ");
     }
     setQuestions(optionsOfQuestion)
   }
@@ -46,19 +46,19 @@ function QuestionsHeader() {
       optionsOfQuestion[i].options.splice(j, 1);
       setQuestions(optionsOfQuestion)
       console.log(i + "__" + j);
-    }   
+    }
   }
 
   function expandCloseAll(){
-    let qs = [...questions]; 
-     for (let j = 0; j < qs.length; j++) {  
+    let qs = [...questions];
+     for (let j = 0; j < qs.length; j++) {
       qs[j].open = false;
      }
      setQuestions(qs);
   }
 
   function handleExpand(i){
-    let qs = [...questions]; 
+    let qs = [...questions];
     for (let j = 0; j < qs.length; j++) {
       if(i ==j ){
         qs[j].open = true;
@@ -81,9 +81,9 @@ function QuestionsHeader() {
                             {...provided.dragHandleProps}
                           >
                              <div style={{marginBottom: "9px"}}>
-          
+
           <Accordion onChange={()=>{handleExpand(i)}} expanded={questions[i].open}>
-            <AccordionSummary            
+            <AccordionSummary
               aria-controls="panel1a-content"
               id="panel1a-header"
               elevation={1} style={{width:'100%'}}
@@ -92,26 +92,26 @@ function QuestionsHeader() {
             <div style={{display: 'flex',flexDirection:'column', alignItems:'flex-start', marginLeft: '0px', paddingTop: '20px', paddingBottom: '20px'}}>
               {/* <TextField id="standard-basic" label=" " value="Question" InputProps={{ disableUnderline: true }} />  */}
               <Typography variant="subtitle1">Form description {i+1}</Typography>
-              
-                <FormControlLabel disabled control={<Radio />} label="Option 1" />                                        
-            </div>            
-            ): ""}   
+
+                <FormControlLabel disabled control={<Radio />} label="Option 1" />
+            </div>
+            ): ""}
             </AccordionSummary>
 
 
             <AccordionDetails>
 
             <div style={{display: 'flex',flexDirection:'column', alignItems:'flex-start', marginLeft: '15px', marginTop:'-15px'}}>
-              
+
               <Typography variant="subtitle1">Form description {i+1}</Typography>
-              
+
               <div style={{width: '100%'}}>
               {ques.options.map((op, j)=>(
                <div key={j} style={{display:'flex', flexDirection:'row', marginLeft:'-13px'}}>
 
-                  <Radio disabled /> 
-                  <TextField fullWidth={true} placeholder="Option text" style={{marginTop: '5px'}} />  
-                  
+                  <Radio disabled />
+                  <TextField fullWidth={true} placeholder="Option text" style={{marginTop: '5px'}} />
+
                   <IconButton aria-label="delete">
                     <CropOriginalIcon />
                   </IconButton>
@@ -121,33 +121,33 @@ function QuestionsHeader() {
                   </IconButton>
 
                </div>
-                
-              ))}  
-              </div>  
-              
-              
+
+              ))}
+              </div>
+
+
               <FormControlLabel disabled control={<Radio />} label={
                 <Button size="small" onClick={()=>{addOption(i)}} style={{textTransform: 'none', marginLeft:"-5px"}}>
                   Add Option
                 </Button>
-              } /> 
+              } />
 
-             
+
 
                 <Typography>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
                   sit amet blandit leo lobortis eget.
                 </Typography>
             </div>
-            
+
             </AccordionDetails>
           </Accordion>
         </div>
-                           
+
                           </div>
                         )}
                       </Draggable>
-         
+
       </div>
      )
     )
@@ -155,7 +155,7 @@ function QuestionsHeader() {
 
 
   return (
-       
+
           <div>
             <DragDropContext onDragEnd={onDragEnd}>
               <Droppable droppableId="droppable">
@@ -187,9 +187,9 @@ function QuestionsHeader() {
             <div>
               <button onClick={addMoreQuestionField}>Add question</button>
             </div>
-            
+
           </div>
-       
+
   );
 }
 export default QuestionsHeader
